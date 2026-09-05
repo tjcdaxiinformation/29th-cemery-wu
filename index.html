@@ -160,6 +160,18 @@
             border: 1px solid #faedcd;
         }
 
+        /* Google 地圖連結樣式 */
+        .map-link {
+            color: #17306b;
+            text-decoration: underline;
+            font-weight: 700;
+            transition: color 0.2s ease;
+        }
+
+        .map-link:hover {
+            color: #b5482e;
+        }
+
         /* 內頁專用元素 */
         .quote-card {
             background: #ffffff;
@@ -212,7 +224,7 @@
             transform: scale(0.98);
         }
 
-        /* 彈出訊息視窗 (Modal) */
+        /* 彈出回應訊息 Modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -316,7 +328,6 @@
             </div>
 
             <div style="text-align: center; margin-top: 10px;">
-                <!-- 首頁標題改為：這是一張邀請卡 -->
                 <p style="font-size: 15px; color: #b5482e; font-weight: 700; letter-spacing: 3px; margin-bottom: 4px;"><i class="fa-solid fa-envelope-open-text"></i> 這是一張邀請卡</p>
                 <h1 class="card-main-title">時候到了</h1>
                 <p class="card-subtitle">「我從前風聞有祢，現在親眼看見祢。」</p>
@@ -341,7 +352,10 @@
 
             <div style="background: #ffffff; padding: 12px 16px; border-radius: 12px; border: 1px solid #f2e2c4; text-align: center;">
                 <p style="font-size: 15px; font-weight: 700; color: #17306b;"><i class="fa-regular fa-calendar-check"></i> 2026.09.19 (六) 上午 09:30~11:00</p>
-                <p style="font-size: 13px; color: #616161; margin-top: 2px;"><i class="fa-solid fa-location-dot"></i> 大溪區民權東路185巷31號</p>
+                <!-- 加入 Google 地圖導航連結 -->
+                <p style="font-size: 13px; color: #616161; margin-top: 4px;">
+                    <i class="fa-solid fa-map-location-dot" style="color: #ea4335;"></i> 地點：<a href="https://www.google.com/maps/search/?api=1&query=桃園市大溪區民權東路185巷31號" target="_blank" rel="noopener noreferrer" class="map-link">桃園市大溪區民權東路185巷31號 (開啟地圖)</a>
+                </p>
             </div>
 
             <div class="card-footer-tip">
@@ -536,7 +550,9 @@
             <div style="background: #ffffff; padding: 16px; border-radius: 16px; border: 1.5px solid #f2e2c4; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
                 <p style="font-size: 15px; font-weight: 700; color: #17306b; margin-bottom: 6px;"><i class="fa-solid fa-location-dot"></i> 聚會地點與時間：</p>
                 <p style="font-size: 14px; color: #37474f;">時間：2026.09.19 (六) 上午 09:30 ~ 11:00</p>
-                <p style="font-size: 14px; color: #37474f; margin-top: 4px;">地點：桃園市大溪區民權東路185巷31號</p>
+                <p style="font-size: 14px; color: #37474f; margin-top: 4px;">
+                    地點：<a href="https://www.google.com/maps/search/?api=1&query=桃園市大溪區民權東路185巷31號" target="_blank" rel="noopener noreferrer" class="map-link">桃園市大溪區民權東路185巷31號 (開啟 Google 地圖)</a>
+                </p>
                 <p style="font-size: 13px; color: #b5482e; font-weight: 700; margin-top: 8px;">聯絡人：宣道股王鴻志弟兄 0916-336821</p>
             </div>
 
