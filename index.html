@@ -189,7 +189,89 @@
             margin-top: 3px;
         }
 
-        /* 按鈕與底列 */
+        /* 我要參加點選按鈕區塊 */
+        .btn-join-box {
+            width: 100%;
+            background: linear-gradient(135deg, #06c755 0%, #00b900 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 16px;
+            padding: 16px 20px;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(6, 199, 85, 0.35);
+            transition: all 0.2s ease;
+        }
+
+        .btn-join-box:active {
+            transform: scale(0.98);
+        }
+
+        /* 彈出訊息視窗 (Modal) */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 24px;
+            max-width: 360px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            animation: popIn 0.3s ease;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-card i {
+            font-size: 54px;
+            color: #06c755;
+            margin-bottom: 15px;
+        }
+
+        .modal-card h3 {
+            font-size: 20px;
+            color: #17306b;
+            margin-bottom: 10px;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .modal-card p {
+            font-size: 15px;
+            color: #455a64;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-btn {
+            background: #17306b;
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+        }
+
         .card-footer-tip {
             text-align: center;
             font-size: 12px;
@@ -215,7 +297,7 @@
 </head>
 <body>
 
-    <!-- 卡片 1：首頁－誠摯邀請頁 -->
+    <!-- 卡片 1：首頁－這是一張邀請卡 -->
     <div class="mobile-card" id="card1">
         <div class="card-header-bg"></div>
         <div class="card-content">
@@ -234,7 +316,8 @@
             </div>
 
             <div style="text-align: center; margin-top: 10px;">
-                <p style="font-size: 14px; color: #b5482e; font-weight: 700; letter-spacing: 2px; margin-bottom: 4px;">2026 秋季季佈道會</p>
+                <!-- 首頁標題改為：這是一張邀請卡 -->
+                <p style="font-size: 15px; color: #b5482e; font-weight: 700; letter-spacing: 3px; margin-bottom: 4px;"><i class="fa-solid fa-envelope-open-text"></i> 這是一張邀請卡</p>
                 <h1 class="card-main-title">時候到了</h1>
                 <p class="card-subtitle">「我從前風聞有祢，現在親眼看見祢。」</p>
             </div>
@@ -431,12 +514,12 @@
             </div>
 
             <div class="card-footer-tip">
-                <span>繼續下滑查看聚會資訊與聯絡</span> <i class="fa-solid fa-chevron-down"></i>
+                <span>繼續下滑查看聚會資訊與報名</span> <i class="fa-solid fa-chevron-down"></i>
             </div>
         </div>
     </div>
 
-    <!-- 卡片 7：末頁－誠摯歡迎與 LINE 諮詢 -->
+    <!-- 卡片 7：末頁－誠摯歡迎與「我要參加」連線 -->
     <div class="mobile-card" id="card7">
         <div class="card-header-bg"></div>
         <div class="card-content">
@@ -446,7 +529,7 @@
             </div>
 
             <div style="text-align: center; margin: 10px 0;">
-                <h2 style="font-size: 26px; color: #17306b; font-family: 'Noto Serif TC', serif; margin-bottom: 10px;">期待您的光臨！</h2>
+                <h2 style="font-size: 26px; color: #17306b; font-family: 'Noto Serif TC', serif; margin-bottom: 8px;">期待您的光臨！</h2>
                 <p style="font-size: 14px; color: #616161; line-height: 1.6;">「不要怕，只要相信，神必定會帶領並開路！」</p>
             </div>
 
@@ -457,20 +540,39 @@
                 <p style="font-size: 13px; color: #b5482e; font-weight: 700; margin-top: 8px;">聯絡人：宣道股王鴻志弟兄 0916-336821</p>
             </div>
 
-            <!-- LINE 加好友專區 -->
-            <div style="background: #ffffff; padding: 14px; border-radius: 16px; border: 1.5px solid #06c755; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
-                <div>
-                    <p style="font-size: 15px; font-weight: 700; color: #00b900;"><i class="fa-brands fa-line"></i> 加入 LINE 好友諮詢</p>
-                    <p style="font-size: 12px; color: #616161; margin-top: 2px;">掃描右側 QR Code，專人為您解答佈道會詳情與地點指引。</p>
-                </div>
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://line.me/ti/p/U3XGjc8GKN&color=00b900" alt="LINE 加好友" style="width: 65px; height: 65px; border-radius: 6px; flex-shrink: 0;">
-            </div>
+            <!-- 頁末「我要參加」點選按鈕 -->
+            <button class="btn-join-box" onclick="onJoinClick()">
+                <i class="fa-brands fa-line" style="font-size: 24px;"></i> 我要參加（點擊報名與諮詢）
+            </button>
 
             <div style="text-align: center; font-size: 12px; color: #8d6e63;">
                 願天父神的平安與喜樂與您同在！阿們。
             </div>
         </div>
     </div>
+
+    <!-- 彈出回應訊息 Modal -->
+    <div class="modal-overlay" id="responseModal">
+        <div class="modal-card">
+            <i class="fa-solid fa-circle-check"></i>
+            <h3>收到您的回應</h3>
+            <p>已經收到你的回應，我們將儘速您聯絡，願主祝福！平安。</p>
+            <button class="modal-btn" onclick="closeModalAndRedirect()">確定並加入 LINE 好友</button>
+        </div>
+    </div>
+
+    <script>
+        // 點擊「我要參加」按鈕
+        function onJoinClick() {
+            document.getElementById('responseModal').style.display = 'flex';
+        }
+
+        // 關閉提示並直接開啟 LINE 加入好友連結
+        function closeModalAndRedirect() {
+            document.getElementById('responseModal').style.display = 'none';
+            window.location.href = 'https://line.me/ti/p/U3XGjc8GKN';
+        }
+    </script>
 
 </body>
 </html>
