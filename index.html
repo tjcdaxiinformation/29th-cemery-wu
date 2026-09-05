@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時候到了 - 季佈道會線上手機卡片</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: #121212;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 30px 10px;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        /* 9:16 手機卡片容器 (寬度 430px，高度 764px 比例) */
+        .mobile-card {
+            width: 430px;
+            height: 764px;
+            background: linear-gradient(180deg, #fffdf8 0%, #fff7eb 100%);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            color: #332211;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 28px 24px 22px;
+            flex-shrink: 0;
+            border: 4px solid #ffffff;
+        }
+
+        /* 頂部背景光暈 */
+        .card-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 260px;
+            background: radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.28) 0%, rgba(255, 248, 230, 0) 75%),
+                        linear-gradient(180deg, rgba(255, 236, 179, 0.35) 0%, rgba(255, 252, 245, 0) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* 頁頂 Logo 區塊 */
+        .top-logo-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .tjc-logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tjc-logo-svg {
+            width: 36px;
+            height: 30px;
+        }
+
+        .church-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #17306b;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .page-badge {
+            background: rgba(23, 48, 107, 0.1);
+            color: #17306b;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        /* 標題通用樣式 */
+        .card-main-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: #4a2506;
+            text-align: center;
+            line-height: 1.25;
+            margin-bottom: 6px;
+        }
+
+        .card-subtitle {
+            font-size: 15px;
+            color: #7f5539;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* 首頁空白邀請框專用設計 */
+        .welcome-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px 18px;
+            border: 2px dashed #e2b17a;
+            box-shadow: 0 6px 16px rgba(127, 85, 57, 0.08);
+            margin: 10px 0;
+        }
+
+        .welcome-name-input {
+            border-bottom: 2px solid #17306b;
+            padding-bottom: 4px;
+            margin-bottom: 14px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #17306b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .welcome-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #455a64;
+        }
+
+        .welcome-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .welcome-tag {
+            background: #fefae0;
+            color: #b5482e;
+            padding: 8px 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            border: 1px solid #faedcd;
+        }
+
+        /* 內頁專用元素 */
+        .quote-card {
+            background: #ffffff;
+            border-left: 4px solid #f4a261;
+            padding: 14px;
+            border-radius: 0 12px 12px 0;
+            font-size: 14px;
+            color: #4a2506;
+            margin: 10px 0;
+            line-height: 1.6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .info-list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #37474f;
+        }
+
+        .info-list-item i {
+            color: #f4a261;
+            font-size: 16px;
+            margin-top: 3px;
+        }
+
+        /* 按鈕與底列 */
+        .card-footer-tip {
+            text-align: center;
+            font-size: 12px;
+            color: #8d6e63;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        /* 響應式：手機畫面滿版呈現 */
+        @media (max-width: 480px) {
+            body { padding: 0; gap: 0; background-color: #fffdf8; }
+            .mobile-card {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+                border: none;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 卡片 1：首頁－誠摯邀請頁 -->
+    <div class="mobile-card" id="card1">
+        <div class="card-header-bg"></div>
+        <div class="card-content">
+            <div class="top-logo-bar">
+                <div class="tjc-logo-wrap">
+                    <svg class="tjc-logo-svg" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 60 220 C 30 290 85 365 225 390 C 130 360 65 295 85 210 Z" fill="#0082a6"/>
+                        <path d="M 100 185 C 70 260 125 330 255 350 C 160 325 105 265 120 180 Z" fill="#0082a6"/>
+                        <path d="M 135 150 C 110 230 160 290 280 305 C 185 285 140 230 155 145 Z" fill="#0082a6"/>
+                        <path d="M 335 180 C 375 125 410 110 450 112 C 390 150 375 175 385 188 Z" fill="#0082a6"/>
+                        <path d="M 145 225 C 205 200 280 185 335 180 C 385 180 400 200 415 210 C 420 214 410 222 400 226 C 350 240 310 265 280 280 L 255 300 C 235 320 225 335 240 315 L 260 292 C 230 300 200 305 180 295 L 205 275 C 170 260 150 245 145 225 Z" fill="#17306b"/>
+                    </svg>
+                    <span class="church-title">真耶穌教會大溪教會</span>
+                </div>
+                <span class="page-badge">01 / 07</span>
+            </div>
+
+            <div style="text-align: center; margin-top: 10px;">
+                <p style="font-size: 14px; color: #b5482e; font-weight: 700; letter-spacing: 2px; margin-bottom: 4px;">2026 秋季季佈道會</p>
+                <h1 class="card-main-title">時候到了</h1>
+                <p class="card-subtitle">「我從前風聞有祢，現在親眼看見祢。」</p>
+            </div>
+
+            <!-- 空白名額熱情邀請框 -->
+            <div class="welcome-box">
+                <div class="welcome-name-input">
+                    <i class="fa-regular fa-envelope-open" style="color: #f4a261;"></i>
+                    敬愛的 ＿＿＿＿＿＿ 先生/女士：
+                </div>
+                <p class="welcome-text">
+                    平安！誠摯地邀請您與家人撥冗參加這場關於<strong>福音、生命、平安與盼望</strong>的盛會。在人生的轉折點上，一同聆聽真實的生命改變與天父大能的祝福。
+                </p>
+                <div class="welcome-highlights">
+                    <div class="welcome-tag"><i class="fa-solid fa-cross"></i> 恩典福音</div>
+                    <div class="welcome-tag"><i class="fa-solid fa-heart-pulse"></i> 重獲生命</div>
+                    <div class="welcome-tag"><i class="fa-solid fa-dove"></i> 內心平安</div>
+                    <div class="welcome-tag"><i class="fa-solid fa-sun"></i> 未來盼望</div>
+                </div>
+            </div>
+
+            <div style="background: #ffffff; padding: 12px 16px; border-radius: 12px; border: 1px solid #f2e2c4; text-align: center;">
+                <p style="font-size: 15px; font-weight: 700; color: #17306b;"><i class="fa-regular fa-calendar-check"></i> 2026.09.19 (六) 上午 09:30~11:00</p>
+                <p style="font-size: 13px; color: #616161; margin-top: 2px;"><i class="fa-solid fa-location-dot"></i> 大溪區民權東路185巷31號</p>
+            </div>
+
+            <div class="card-footer-tip">
+                <span>往下滑動，閱讀見證故事</span> <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 卡片 2：聚會流程與節目 -->
+    <div class="mobile-card" id="card2">
+        <div class="card-header-bg"></div>
+        <div class="card-content">
+            <div class="top-logo-bar">
+                <span class="church-title">季佈道會流程安排</span>
+                <span class="page-badge">02 / 07</span>
+            </div>
+
+            <div style="margin: 15px 0;">
+                <h2 style="font-size: 26px; color: #17306b; font-family: 'Noto Serif TC', serif; text-align: center; margin-bottom: 20px;">聚會節目時間表</h2>
+                
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <div style="background: white; padding: 14px; border-radius: 12px; border-left: 4px solid #17306b; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                        <p style="font-size: 13px; color: #b5482e; font-weight: 700;">09:30 - 10:00</p>
+                        <p style="font-size: 16px; font-weight: 700; color: #332211;">會前禱告及會前唱詩</p>
+                        <p style="font-size: 12px; color: #757575;">以詩歌讚美預備心靈，尋求聖靈同在</p>
+                    </div>
+
+                    <div style="background: white; padding: 14px; border-radius: 12px; border-left: 4px solid #e76f51; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                        <p style="font-size: 13px; color: #b5482e; font-weight: 700;">10:00 - 10:40</p>
+                        <p style="font-size: 16px; font-weight: 700; color: #332211;">見證會『時候到了』</p>
+                        <p style="font-size: 12px; color: #757575;">主講：陳曼玲姊妹（分享 29 年尋回信仰歷程）</p>
+                    </div>
+
+                    <div style="background: white; padding: 14px; border-radius: 12px; border-left: 4px solid #f4a261; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                        <p style="font-size: 13px; color: #b5482e; font-weight: 700;">10:40 - 11:00</p>
+                        <p style="font-size: 16px; font-weight: 700; color: #332211;">祈求靈恩（同心禱告）</p>
+                        <p style="font-size: 12px; color: #757575;">同心跪下祈求聖靈賜予平安與力量</p>
+                    </div>
+
+                    <div style="background: #fefae0; padding: 14px; border-radius: 12px; border: 1px solid #faedcd; text-align: center;">
+                        <p style="font-size: 15px; font-weight: 700; color: #b5482e;"><i class="fa-solid fa-utensils"></i> 11:30 備有溫暖愛餐茶敘</p>
+                        <p style="font-size: 12px; color: #7f5539; margin-top: 2px;">會後邀請您留下來享用餐點、交談分享</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer-tip">
+                <span>繼續下滑閱讀見證</span> <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 卡片 3：第一階段：29年的剛硬與堅持 -->
+    <div class="mobile-card" id="card3">
+        <div class="card-header-bg"></div>
+        <div class="card-content">
+            <div class="top-logo-bar">
+                <span class="church-title">見證一：29年的剛硬</span>
+                <span class="page-badge">03 / 07</span>
+            </div>
+
+            <div style="margin: 10px 0;">
+                <h3 style="font-size: 22px; color: #4a2506; font-family: 'Noto Serif TC', serif; margin-bottom: 12px;">傳統長老會背景與心靈隔閡</h3>
+                
+                <p style="font-size: 14px; line-height: 1.7; color: #455a64;">
+                    陳曼玲姊妹出自傳統長老教會家庭（父親為長執、兄長為牧師）。嫁至裡冷 29 年間，因著教派立場與已受洗的執念，極力逃避真教會的靈恩會與家庭訪問。
+                </p>
+
+                <div class="quote-card">
+                    「我絕對不會在真耶穌教會受洗，因為我已經在長老教會受過洗了！」
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.7; color: #455a64;">
+                    雖生活中早已融入真教會的聚會與服事，但心中的驕傲與剛硬，讓她 29 年間不敢領受聖餐，對神充滿虧欠與隔閡。
+                </p>
+            </div>
+
+            <div class="card-footer-tip">
+                <span>繼續下滑閱讀轉折點</span> <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 卡片 4：第二階段：化妝後的祝福 -->
+    <div class="mobile-card" id="card4">
+        <div class="card-header-bg"></div>
+        <div class="card-content">
+            <div class="top-logo-bar">
+                <span class="church-title">見證二：化妝後的祝福</span>
+                <span class="page-badge">04 / 07</span>
+            </div>
+
+            <div style="margin: 10px 0;">
+                <h3 style="font-size: 22px; color: #4a2506; font-family: 'Noto Serif TC', serif; margin-bottom: 12px;">鐵鎚重傷與神預備的雜草空地</h3>
+                
+                <p style="font-size: 14px; line-height: 1.7; color: #455a64;">
+                    2020 年因親眷嫉妒故意切斷水源，丈夫夜間修水時遭鐵鎚重傷，頭骨、面部碎裂並從相當於四層樓高處墜落。
+                </p>
+
+                <div style="background: #ffffff; padding: 14px; border-radius: 12px; border: 1px solid #f2e2c4; margin: 12px 0;">
+                    <p style="font-size: 14px; color: #b5482e; font-weight: 700;"><i class="fa-solid fa-shield-halved"></i> 神奇蹟般的保佑：</p>
+                    <p style="font-size: 13px; color: #5d4037; margin-top: 4px;">墜落處左邊是巨石，右邊是鋼筋水泥，唯獨中間預備了一小塊長滿雜草的空地，保住了丈夫性命！</p>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.7; color: #455a64;">
+                    事發當晚，教會長執信徒在曼玲姊妹家中陪伴禱告直至深夜六個小時，讓全家在低潮中深深體會主的愛與陪伴。
+                </p>
+            </div>
+
+            <div class="card-footer-tip">
+                <span>繼續下滑閱讀神聲音</span> <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 卡片 5：第三階段：時候到了 -->
+    <div class="mobile-card" id="card5">
+        <div class="card-header-bg"></div>
+        <div class="card-content">
+            <div class="top-logo-bar">
+                <span class="church-title">見證三：時候到了</span>
+                <span class="page-badge">05 / 07</span>
+            </div>
+
+            <div style="margin: 10px 0;">
+                <h3 style="font-size: 22px; color: #4a2506; font-family: 'Noto Serif TC', serif; margin-bottom: 12px;">異夢、聲音與聖經的點醒</h3>
+                
+                <div class="info-list-item">
+                    <i class="fa-solid fa-check"></i>
+                    <div><strong>父親離世前的叮嚀：</strong>娘家爸爸多次用泰雅語告訴她：「全家人要有相同的信仰，一起走在主路上才有平安！」</div>
+                </div>
+
+                <div class="info-list-item">
+                    <i class="fa-solid fa-check"></i>
+                    <div><strong>露營區耳邊的聲音：</strong>運動時清晰聽見父親母語勸誡，腳步越快聲音越清晰，讓她流淚明白「時候到了」。</div>
+                </div>
+
+                <div class="info-list-item">
+                    <i class="fa-solid fa-check"></i>
+                    <div><strong>經文解開洗禮疑惑：</strong>《約翰福音》13:8「我若不洗你，你就與我無分了。」點醒了她對洗腳禮與活水浸禮的盲點，徹底順服！</div>
+                </div>
+            </div>
+
+            <div class="card-footer-tip">
+                <span>繼續下滑閱讀全家祝福</span> <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 卡片 6：第四階段：29年的守望應驗 -->
+    <div class="mobile-card" id="card6">
+        <div class="card-header-bg"></div>
+        <div class="card-content">
+            <div class="top-logo-bar">
+                <span class="church-title">見證四：29年的守望</span>
+                <span class="page-badge">06 / 07</span>
+            </div>
+
+            <div style="margin: 10px 0; text-align: center;">
+                <div style="font-size: 72px; font-weight: 900; color: #f4a261; font-family: 'Noto Serif TC', serif; line-height: 1;">29</div>
+                <p style="font-size: 16px; font-weight: 700; color: #17306b; margin-bottom: 15px;">年清晨風雨無阻的默默禱告</p>
+
+                <p style="font-size: 14px; line-height: 1.7; color: #455a64; text-align: left;">
+                    結婚 29 年來，先生每天清晨 4:30~5:30 都到教會為陳姊妹的信仰默默祈禱。
+                </p>
+
+                <p style="font-size: 14px; line-height: 1.7; color: #455a64; text-align: left; margin-top: 10px;">
+                    當她終於有勇氣走到前面求聖靈時，三個兒子、大媳婦與孫子全都跪在左右兩旁陪同！2022 年 3 月順利受洗歸主，全家同享信仰的平安。
+                </p>
+            </div>
+
+            <div class="card-footer-tip">
+                <span>繼續下滑查看聚會資訊與聯絡</span> <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 卡片 7：末頁－誠摯歡迎與 LINE 諮詢 -->
+    <div class="mobile-card" id="card7">
+        <div class="card-header-bg"></div>
+        <div class="card-content">
+            <div class="top-logo-bar">
+                <span class="church-title">真耶穌教會大溪教會</span>
+                <span class="page-badge">07 / 07</span>
+            </div>
+
+            <div style="text-align: center; margin: 10px 0;">
+                <h2 style="font-size: 26px; color: #17306b; font-family: 'Noto Serif TC', serif; margin-bottom: 10px;">期待您的光臨！</h2>
+                <p style="font-size: 14px; color: #616161; line-height: 1.6;">「不要怕，只要相信，神必定會帶領並開路！」</p>
+            </div>
+
+            <div style="background: #ffffff; padding: 16px; border-radius: 16px; border: 1.5px solid #f2e2c4; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                <p style="font-size: 15px; font-weight: 700; color: #17306b; margin-bottom: 6px;"><i class="fa-solid fa-location-dot"></i> 聚會地點與時間：</p>
+                <p style="font-size: 14px; color: #37474f;">時間：2026.09.19 (六) 上午 09:30 ~ 11:00</p>
+                <p style="font-size: 14px; color: #37474f; margin-top: 4px;">地點：桃園市大溪區民權東路185巷31號</p>
+                <p style="font-size: 13px; color: #b5482e; font-weight: 700; margin-top: 8px;">聯絡人：宣道股王鴻志弟兄 0916-336821</p>
+            </div>
+
+            <!-- LINE 加好友專區 -->
+            <div style="background: #ffffff; padding: 14px; border-radius: 16px; border: 1.5px solid #06c755; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                <div>
+                    <p style="font-size: 15px; font-weight: 700; color: #00b900;"><i class="fa-brands fa-line"></i> 加入 LINE 好友諮詢</p>
+                    <p style="font-size: 12px; color: #616161; margin-top: 2px;">掃描右側 QR Code，專人為您解答佈道會詳情與地點指引。</p>
+                </div>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://line.me/ti/p/U3XGjc8GKN&color=00b900" alt="LINE 加好友" style="width: 65px; height: 65px; border-radius: 6px; flex-shrink: 0;">
+            </div>
+
+            <div style="text-align: center; font-size: 12px; color: #8d6e63;">
+                願天父神的平安與喜樂與您同在！阿們。
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
